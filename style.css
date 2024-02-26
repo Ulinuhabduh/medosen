@@ -81,4 +81,7 @@ span {
     .quote {
         font-size: 1rem;
     }
+    nav img {
+        width: 60px;
+    }
 }
