@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>Medosen Calculate</title>
+        <link rel="icon" href="/images/injection.png" type="image/x-icon">
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -23,8 +24,7 @@
 
     <body>
         <main>
-            <!-- <img src="/images/blue capsule.png" alt=""> -->
-            <h1>Perhitungan Dosis Obat Anestesi</h2>
+            <h2>Perhitungan Dosis Pengenceran Obat</h2>
             <form action="#" method="post">
                 <div>
                     <label for="obat">Pilih Obat:</label>
@@ -58,6 +58,19 @@
                 </div>
 
                 <div>
+                    <label for="spuit">Spuit</label>
+                    <select id="spuit">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="sediaan">Dosis Sediaan (gr/ml):</label>
+                    <input type="number" id="sediaan" name="sediaan" required>
+                </div>
+
+                <div>
                     <label for="kegunaan">Kegunaan / Indikasi:</label>
                     <select id="kegunaan" onchange="tampilkanRute()">
                         <option value="">Pilih Jenis Obat terlebih dahulu</option>
@@ -80,6 +93,18 @@
                     <button type="submit">Hitung Dosis</button>
                 </div>
             </form>
+
+            <div class="hasil">
+                <h1 class="text-center">HASIL</h1>
+                <ul>
+                    <li id="namaObat"></li>
+                    <li id="fungsi"></li>
+                    <li id="path"></li>
+                    <li id="dosis"></li>
+                    <li id="pengenceran"></li>
+                </ul>
+            </div>
+
         </main>
 
         <footer>
