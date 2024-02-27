@@ -1,15 +1,14 @@
 body {
-    background: url("images/bottle\ of\ pills.png");
-    /* background-repeat: no-repeat; */
+    background: url("images/injection.png");
+    background-repeat: no-repeat;
     background-position: right;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 .container {
       background-color: #fff;
@@ -19,6 +18,7 @@ body {
     }
 h2 {
       text-align: center;
+      background: #fff;
     }
 form {
       display: flex;
@@ -51,6 +51,7 @@ button[type="submit"]:hover {
 @media only screen and (max-width: 600px) and (max-height: 800px) {
     body {
         background-repeat: no-repeat;
+        padding: 20px 20px;
     }
       .container {
         padding: 10px;

@@ -28,43 +28,60 @@
             <form action="#" method="post">
                 <div>
                     <label for="obat">Pilih Obat:</label>
-                    <select id="obat" name="obat">
+                    <select id="obat" onchange="tampilkanKegunaan()">
 
                         <optgroup label="Obat Hipnotik">
-                            <option value="">Propofol</option>
-                            <option value="">Thiopental</option>
-                            <option value="">Ketamin</option>
+                            <option value="Propofol">Propofol</option>
+                            <option value="Thiopental">Thiopental</option>
+                            <option value="Ketamin">Ketamin</option>
                         </optgroup>
 
                         <optgroup label="Obat Analgetik">
-                            <option value="">Morfin</option>
-                            <option value="">Petidin</option>
-                            <option value="">Fentanyl</option>
-                            <option value="">Sufetanil</option>
-                            <option value="">Alfetanil</option>
-                            <option value="">Remifeentanil</option>
-                            <option value="">Buprenor phine</option>
-                            <option value="">Hydromor phone</option>
-                            <option value="">Diamorphine</option>
-                            <option value="">Tramadol</option>
+                            <option value="Morfin">Morfin</option>
+                            <option value="Petidin">Petidin</option>
+                            <option value="Fentanyl">Fentanyl</option>
+                            <option value="Sufetanil">Sufetanil</option>
+                            <option value="Alfetanil">Alfetanil</option>
+                            <option value="Remifeentanil">Remifeentanil</option>
+                            <option value="Buprenorphine">Buprenor phine</option>
+                            <option value="Hydromorphone">Hydromor phone</option>
+                            <option value="Diamorphine">Diamorphine</option>
+                            <option value="Tramadol">Tramadol</option>
                         </optgroup>
 
                         <optgroup label="Obat Resusitasi">
-                            <option value="">Ephedrine</option>
-                            <option value="">Sulfat Atropin</option>
+                            <option value="Ephedrine">Ephedrine</option>
+                            <option value="Sulfatatropin">Sulfat Atropin</option>
                         </optgroup>
                         
                     </select>
                 </div>
+
+                <div>
+                    <label for="kegunaan">Kegunaan / Indikasi:</label>
+                    <select id="kegunaan" onchange="tampilkanRute()">
+                        <option value="">Pilih Jenis Obat terlebih dahulu</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="rute">Rute:</label>
+                    <select id="rute">
+                        <option value="">Pilih Kegunaan / Indikasi terlebih dahulu</option>
+                    </select>
+                </div>
+
                 <div>
                     <label for="berat_badan">Berat Badan (kg):</label>
                     <input type="number" id="berat_badan" name="berat_badan" required>
                 </div>
+
                 <div>
                     <button type="submit">Hitung Dosis</button>
                 </div>
             </form>
         </main>
+
         <footer>
             <!-- place footer here -->
         </footer>
@@ -80,5 +97,7 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="script.js"></script>
     </body>
 </html>
