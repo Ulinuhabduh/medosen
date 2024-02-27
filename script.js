@@ -274,18 +274,18 @@ const dataResusitasi = {
       "Bradikardia Sinus": {
         rute: {
           "Intra Vena, Intra Muskuler": {
-            "Dosis Obat": {
+            dosis: {
               Dewasa: "0.5 - 1.0 mg",
               Anak: "10 - 20 mg/kg",
             },
           },
-          OOA: "45 - 60s",
-          DOA: "1 - 2 jam",
         },
+        OOA: "45 - 60s",
+        DOA: "1 - 2 jam",
       },
       Premedikasi: {
         rute: "Intra Vena, Intra Muskuler",
-        "Dosis Obat": "0.4 - 1.0 mg",
+        dosis: "0.4 - 1.0 mg",
         OOA: "5 - 40 mnt",
         DOA: "1 - 2 jam",
       },
@@ -377,7 +377,7 @@ function tampilkanRute() {
     }
   } else if (selectedDataResusitasi) {
     const selectedKegunaanData = selectedDataResusitasi.kegunaan[selectedKegunaan];
-    const ruteData = selectedKegunaanData.Rute;
+    const ruteData = selectedKegunaanData.rute;
     if (typeof ruteData === "object") {
       Object.keys(ruteData).forEach((rute) => {
         const option = document.createElement("option");
