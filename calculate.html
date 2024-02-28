@@ -1,128 +1,88 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Medosen Calculate</title>
-        <link rel="icon" href="/images/injection.png" type="image/x-icon">
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+<head>
+    <title>Medosen Calculate</title>
+    <link rel="icon" href="/images/injection.png" type="image/x-icon">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
-        <!-- CSS Internal -->
-        <link rel="stylesheet" href="style_calcu.css">
-    </head>
+    <!-- CSS Internal -->
+    <link rel="stylesheet" href="style_calcu.css">
+</head>
 
-    <body>
-        <main>
-            <h2>Perhitungan Dosis Pengenceran Obat</h2>
-            <form action="#" method="post">
-                <div>
-                    <label for="obat">Pilih Obat:</label>
-                    <select id="obat" onchange="tampilkanKegunaan()">
-
-                        <optgroup label="Obat Hipnotik">
-                            <option value="Propofol">Propofol</option>
-                            <option value="Thiopental">Thiopental</option>
-                            <option value="Ketamin">Ketamin</option>
-                        </optgroup>
-
-                        <optgroup label="Obat Analgetik">
-                            <option value="Morfin">Morfin</option>
-                            <option value="Petidin">Petidin</option>
-                            <option value="Fentanyl">Fentanyl</option>
-                            <option value="Sufetanil">Sufetanil</option>
-                            <option value="Alfetanil">Alfetanil</option>
-                            <option value="Remifeentanil">Remifeentanil</option>
-                            <option value="Buprenorphine">Buprenorphine</option>
-                            <option value="Hydromorphone">Hydromorphone</option>
-                            <option value="Diamorphine">Diamorphine</option>
-                            <option value="Tramadol">Tramadol</option>
-                        </optgroup>
-
-                        <optgroup label="Obat Resusitasi">
-                            <option value="Ephedrine">Ephedrine</option>
-                            <option value="Sulfat Atropin">Sulfat Atropin</option>
-                        </optgroup>
-                        
-                    </select>
-                </div>
-
-                <div>
-                    <label for="spuit">Spuit</label>
-                    <select id="spuit">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="sediaan">Dosis Sediaan (gr/ml):</label>
-                    <input type="number" id="sediaan" name="sediaan" required>
-                </div>
-
-                <div>
-                    <label for="kegunaan">Kegunaan / Indikasi:</label>
-                    <select id="kegunaan" onchange="tampilkanRute()">
-                        <option value="">Pilih Jenis Obat terlebih dahulu</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="rute">Rute:</label>
-                    <select id="rute">
-                        <option value="">Pilih Kegunaan / Indikasi terlebih dahulu</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="berat_badan">Berat Badan (kg):</label>
-                    <input type="number" id="berat_badan" name="berat_badan" required>
-                </div>
-
-                <div>
-                    <button type="submit">Hitung Dosis</button>
-                </div>
-            </form>
-
-            <div class="hasil">
-                <h1 class="text-center">HASIL</h1>
-                <ul>
-                    <li id="namaObat"></li>
-                    <li id="fungsi"></li>
-                    <li id="path"></li>
-                    <li id="dosis"></li>
-                    <li id="pengenceran"></li>
-                </ul>
+<body>
+    <main>
+        <h2>Perhitungan Dosis Pengenceran Obat</h2>
+        <form action="#" id="calculationForm">
+            <div>
+                <label for="obat">Pilih Jenis Obat:</label>
+                <select id="obat" required>
+                    <optgroup label="Obat Hipnotik">
+                        <option value="Propofol">Propofol</option>
+                        <option value="Thiopental">Thiopental</option>
+                        <option value="Ketamin">Ketamin</option>
+                    </optgroup>
+                    <optgroup label="Obat Analgetik">
+                        <option value="Morfin">Morfin</option>
+                        <option value="Petidin">Petidin</option>
+                        <option value="Fentanyl">Fentanyl</option>
+                        <option value="Sufetanil">Sufetanil</option>
+                        <option value="Alfetanil">Alfetanil</option>
+                        <option value="Remifeentanil">Remifeentanil</option>
+                        <option value="Buprenorphine">Buprenorphine</option>
+                        <option value="Hydromorphone">Hydromorphone</option>
+                        <option value="Diamorphine">Diamorphine</option>
+                        <option value="Tramadol">Tramadol</option>
+                    </optgroup>
+                    <optgroup label="Obat Resusitasi">
+                        <option value="Ephedrine">Ephedrine</option>
+                        <option value="Sulfat Atropin">Sulfat Atropin</option>
+                    </optgroup>
+                </select>
             </div>
 
-        </main>
+            <div>
+                <label for="spuit">Pilih Spuit (mil):</label>
+                <select name="spuit" id="spuit">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
 
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
+            <div>
+                <label for="sediaan">Masukkan Dosis Sediaan (gr/ml):</label>
+                <input type="number" id="sediaan" name="sediaan" required>
+            </div>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
+            <div>
+                <label for="berat_badan">Masukkan Berat Badan (kg):</label>
+                <input type="number" id="berat_badan" name="berat_badan" required>
+            </div>
 
-        <script src="script.js"></script>
-    </body>
+            <div>
+                <button type="submit">Tampilkan Perhitungan</button>
+            </div>
+        </form>
+
+        <div class=" mt-4">
+            <p id="informasiDosis"></p>
+        </div>
+
+
+    </main>
+
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+</body>
 </html>

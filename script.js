@@ -1,10 +1,9 @@
-// Data Obat Hipnotik
+// Dictionary Obat
 
 const dataHipnotik = {
   Propofol: {
     kegunaan: {
       Induksi: {
-        rute: "-",
         dosis: "2 - 2.5 mg/kg",
         minDosis: 2,
         maxDosis: 2.5,
@@ -12,7 +11,6 @@ const dataHipnotik = {
         DOA: "5 - 10 mnt",
       },
       Maintenance: {
-        rute: "-",
         dosis: "6 - 10 mg/kg/jam",
         minDosis: 6,
         maxDosis: 10,
@@ -20,7 +18,6 @@ const dataHipnotik = {
         DOA: "5 - 10 mnt",
       },
       Sedasi: {
-        rute: "-",
         dosis: "25 - 100 μg/kg/mnt",
         minDosis: 25,
         maxDosis: 100,
@@ -32,7 +29,6 @@ const dataHipnotik = {
   Thiopental: {
     kegunaan: {
       Induksi: {
-        rute: "-",
         dosis: "4 - 6 mg/kg",
         minDosis: 4,
         maxDosis: 6,
@@ -40,7 +36,6 @@ const dataHipnotik = {
         DOA: "5 - 15 mnt",
       },
       Maintenance: {
-        rute: "-",
         dosis: "1 - 3 mg/kg/jam",
         minDosis: 1,
         maxDosis: 3,
@@ -48,7 +43,6 @@ const dataHipnotik = {
         DOA: "5 - 15 mnt",
       },
       Sedasi: {
-        rute: "-",
         dosis: "1 - 3 mg/kg/jam",
         minDosis: 1,
         maxDosis: 3,
@@ -60,7 +54,6 @@ const dataHipnotik = {
   Ketamin: {
     kegunaan: {
       "Induksi IV": {
-        rute: "-",
         dosis: "1 - 3 mg/kg",
         minDosis: 1,
         maxDosis: 3,
@@ -68,7 +61,6 @@ const dataHipnotik = {
         DOA: "10 - 20 mnt",
       },
       "Intra Muskular": {
-        rute: "-",
         dosis: "8 - 13 mg/kg",
         minDosis: 8,
         maxDosis: 13,
@@ -336,12 +328,17 @@ const dataResusitasi = {
     kegunaan: {
       "Bradikardia Sinus": {
         rute: "Intra Vena, Intra Muskuler",
-        dosis: "0.5 - 1.0 mg",
+        dosisDewasa: "0.5 - 1.0 mg",
+        minDosisDewasa: 0.5,
+        maxDosisDewasa: 1,
+        dosisAnak: "10 - 20 mg/kg",
+        minDosisAnak: 10,
+        maxDosisAnak: 20,
         OOA: "45 - 60s",
         DOA: "1 - 2 jam",
       },
       Premedikasi: {
-        rute: "Intra Vena, Intra Muskuler",
+        rute: "Intra Vena,Intra Muskuler",
         dosis: "0.4 - 1.0 mg",
         minDosis: 0.4,
         maxDosis: 1,
@@ -352,197 +349,197 @@ const dataResusitasi = {
   },
 };
 
-// Fungsi untuk menampilkan pilihan kegunaan berdasarkan obat yang dipilih
-function tampilkanKegunaan() {
-  const obatSelect = document.getElementById("obat");
-  const kegunaanSelect = document.getElementById("kegunaan");
-  const ruteSelect = document.getElementById("rute");
 
-  // Bersihkan pilihan kegunaan dan rute
-  kegunaanSelect.innerHTML = "<option value=''>Pilih Kegunaan</option>";
-  ruteSelect.innerHTML = "<option value=''>Pilih Rute</option>";
+// ----------------------------------------------------------------------------------------------------
 
-  const selectedObat = obatSelect.value;
-  const selectedDataHipnotik = dataHipnotik[selectedObat];
-  const selectedDataAnalgesik = dataAnalgesik[selectedObat];
-  const selectedDataResusitasi = dataResusitasi[selectedObat];
 
-  // Tampilkan pilihan kegunaan
-  if (selectedDataHipnotik) {
-    Object.keys(selectedDataHipnotik.kegunaan).forEach((kegunaan) => {
-      const option = document.createElement("option");
-      option.text = kegunaan;
-      kegunaanSelect.add(option);
-    });
-  } else if (selectedDataAnalgesik) {
-    Object.keys(selectedDataAnalgesik.kegunaan).forEach((kegunaan) => {
-      const option = document.createElement("option");
-      option.text = kegunaan;
-      kegunaanSelect.add(option);
-    });
-  } else if (selectedDataResusitasi) {
-    Object.keys(selectedDataResusitasi.kegunaan).forEach((kegunaan) => {
-      const option = document.createElement("option");
-      option.text = kegunaan;
-      kegunaanSelect.add(option);
-    });
+document.getElementById("calculationForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the form from submitting and refreshing the page
+
+  // Get user inputs
+  const selectedObat = document.getElementById("obat").value;
+  const spuit = parseInt(document.getElementById("spuit").value);
+  const sediaan = parseFloat(document.getElementById("sediaan").value);
+  const beratBadan = parseFloat(document.getElementById("berat_badan").value);
+
+  // Get the selected data based on the category of the selectedObat
+  let selectedData;
+  if (dataHipnotik[selectedObat]) {
+    selectedData = dataHipnotik[selectedObat].kegunaan;
+  } else if (dataAnalgesik[selectedObat]) {
+    selectedData = dataAnalgesik[selectedObat].kegunaan;
+  } else if (dataResusitasi[selectedObat]) {
+    selectedData = dataResusitasi[selectedObat].kegunaan;
   }
-}
 
-// Fungsi untuk menampilkan pilihan rute berdasarkan kegunaan yang dipilih
-function tampilkanRute() {
-  const obatSelect = document.getElementById("obat");
-  const kegunaanSelect = document.getElementById("kegunaan");
-  const ruteSelect = document.getElementById("rute");
+  // Generate HTML for displaying dosage information
+  let dosageInfoHTML = "<h3>Informasi Dosis Pengenceran</h3>";
+  if (selectedData) {
+    for (const kegunaan in selectedData) {
+      if (selectedData.hasOwnProperty(kegunaan)) {
+        const rute = selectedData[kegunaan].rute || "-";
+        const dosisPengenceranMin = selectedData[kegunaan].minDosis ? ((selectedData[kegunaan].minDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
+        const dosisPengenceranMax = selectedData[kegunaan].maxDosis ? ((selectedData[kegunaan].maxDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
+        const dosisPengenceran = selectedData[kegunaan].fixDosis ? ((selectedData[kegunaan].fixDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
 
-  const selectedObat = obatSelect.value;
-  const selectedKegunaan = kegunaanSelect.value;
-
-  const selectedDataHipnotik = dataHipnotik[selectedObat];
-  const selectedDataAnalgesik = dataAnalgesik[selectedObat];
-  const selectedDataResusitasi = dataResusitasi[selectedObat];
-
-  // Bersihkan pilihan rute
-  ruteSelect.innerHTML = "<option value=''>Pilih Rute</option>";
-
-  // Tampilkan pilihan rute
-  if (selectedDataHipnotik) {
-    const selectedKegunaanData = selectedDataHipnotik.kegunaan[selectedKegunaan];
-    const ruteData = selectedKegunaanData.rute;
-    if (typeof ruteData === "object") {
-      Object.keys(ruteData).forEach((rute) => {
-        const option = document.createElement("option");
-        option.text = rute;
-        ruteSelect.add(option);
-      });
-    } else {
-      const option = document.createElement("option");
-      option.text = ruteData;
-      ruteSelect.add(option);
-    }
-  } else if (selectedDataAnalgesik) {
-    const selectedKegunaanData = selectedDataAnalgesik.kegunaan[selectedKegunaan];
-    const ruteData = selectedKegunaanData.rute;
-    if (typeof ruteData === "object") {
-      Object.keys(ruteData).forEach((rute) => {
-        const option = document.createElement("option");
-        option.text = rute;
-        ruteSelect.add(option);
-      });
-    } else {
-      const option = document.createElement("option");
-      option.text = ruteData;
-      ruteSelect.add(option);
-    }
-  } else if (selectedDataResusitasi) {
-    const selectedKegunaanData = selectedDataResusitasi.kegunaan[selectedKegunaan];
-    const ruteData = selectedKegunaanData.rute;
-    if (typeof ruteData === "object") {
-      Object.keys(ruteData).forEach((rute) => {
-        const option = document.createElement("option");
-        option.text = rute;
-        ruteSelect.add(option);
-      });
-    } else {
-      const option = document.createElement("option");
-      option.text = ruteData;
-      ruteSelect.add(option);
-    }
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const hasilDiv = document.querySelector(".hasil");
-  const form = document.querySelector("form");
-
-  // Sembunyikan div "hasil" saat halaman dimuat
-  hasilDiv.style.display = "none";
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Hindari perilaku default submit form
-
-    // Ambil nilai dari input obat
-    const obatSelect = document.getElementById("obat");
-    const selectedObat = obatSelect.value;
-
-    // Ambil nilai dari input spuit
-    const spuitInput = document.getElementById("spuit");
-    const spuit = spuitInput.value;
-    const spuitValue = parseInt(spuit);
-
-    // Ambil nilai dari input sediaan
-    const sediaanInput = document.getElementById("sediaan");
-    const sediaanValue = sediaanInput.value;
-
-    // Ambil nilai dari input kegunaan
-    const kegunaanSelect = document.getElementById("kegunaan");
-    const selectedKegunaan = kegunaanSelect.value;
-
-    // Ambil nilai dari input rute
-    const ruteSelect = document.getElementById("rute");
-    const selectedRute = ruteSelect.value;
-
-    // Ambil nilai dari input berat_badan
-    const beratBadanInput = document.getElementById("berat_badan");
-    const beratBadan = beratBadanInput.value;
-
-    // Tampilkan div "hasil" dengan nilai-nilai yang diinputkan
-    hasilDiv.style.display = "block";
-
-    // Tampilkan nilai obat pada elemen "namaObat" di div "hasil"
-    const namaObatElem = document.getElementById("namaObat");
-    namaObatElem.textContent = `Nama Obat: ${selectedObat}`;
-
-    // Tampilkan nilai kegunaan pada elemen "fungsi" di div "hasil"
-    const fungsiElem = document.getElementById("fungsi");
-    fungsiElem.textContent = `Kegunaan: ${selectedKegunaan}`;
-
-    // Tampilkan nilai rute pada elemen "path" di div "hasil"
-    const pathElem = document.getElementById("path");
-    pathElem.textContent = `Rute: ${selectedRute}`;
-
-    let dosis = "";
-    let obatData = null; // Deklarasikan obatData di luar blok if
-    let minDosis, maxDosis; // Deklarasikan minDosis dan maxDosis di luar blok if
-    const konsentrasiPengenceran = 10000; // Nilai konstan sesuai dengan rumus
-
-    // Ambil data dosis dari dictionary berdasarkan obat, kegunaan, dan rute yang dipilih
-    if (selectedObat && selectedKegunaan && selectedRute) {
-      obatData = dataHipnotik[selectedObat] || dataAnalgesik[selectedObat] || dataResusitasi[selectedObat];
-      if (obatData) {
-        if (obatData.kegunaan[selectedKegunaan].rute && typeof obatData.kegunaan[selectedKegunaan].rute === "object") {
-          const ruteData = obatData.kegunaan[selectedKegunaan].rute[selectedRute];
-          minDosis = ruteData.minDosis;
-          maxDosis = ruteData.maxDosis;
-          dosis = ruteData.dosis;
+        // Generate dosage information based on conditions
+        let dosageInfo;
+        if (dosisPengenceran !== "-") {
+          dosageInfo = `${kegunaan} => ${rute} : ${dosisPengenceran.toFixed(2)} ml`;
+        } else if (dosisPengenceranMin !== "-" && dosisPengenceranMax !== "-") {
+          dosageInfo = `${kegunaan} => ${rute} : ${dosisPengenceranMin.toFixed(2)} ml ---> ${dosisPengenceranMax.toFixed(2)} ml`;
+        } else if (selectedData[kegunaan].minDosisDewasa && selectedData[kegunaan].maxDosisDewasa && selectedData[kegunaan].minDosisAnak && selectedData[kegunaan].maxDosisAnak) {
+          const dosisPengenceranMinDewasa = ((selectedData[kegunaan].minDosisDewasa * beratBadan) / (sediaan * 10000)) * spuit;
+          const dosisPengenceranMaxDewasa = ((selectedData[kegunaan].maxDosisDewasa * beratBadan) / (sediaan * 10000)) * spuit;
+          const dosisPengenceranMinAnak = ((selectedData[kegunaan].minDosisAnak * beratBadan) / (sediaan * 10000)) * spuit;
+          const dosisPengenceranMaxAnak = ((selectedData[kegunaan].maxDosisAnak * beratBadan) / (sediaan * 10000)) * spuit;
+          dosageInfo = `${kegunaan} => Dewasa : ${dosisPengenceranMinDewasa.toFixed(2)} ml ---> ${dosisPengenceranMaxDewasa.toFixed(2)} ml, Anak : ${dosisPengenceranMinAnak.toFixed(2)} ml ---> ${dosisPengenceranMaxAnak.toFixed(2)} ml`;
         } else {
-          minDosis = obatData.kegunaan[selectedKegunaan].minDosis;
-          maxDosis = obatData.kegunaan[selectedKegunaan].maxDosis;
-          dosis = obatData.kegunaan[selectedKegunaan].dosis;
+          dosageInfo = `${kegunaan} => ${dosisPengenceranMin.toFixed(2)} ml ---> ${dosisPengenceranMax.toFixed(2)} ml`;
         }
+
+        dosageInfoHTML += `<p>${dosageInfo}</p>`;
       }
     }
+  } else {
+    dosageInfoHTML += `<p>Data obat tidak ditemukan.</p>`;
+  }
 
-    // Tampilkan nilai dosis pada elemen "dosis" di div "hasil"
-    const dosisElem = document.getElementById("dosis");
-    dosisElem.textContent = `Dosis: ${dosis}`;
+  // Display dosage information
+  const hasilElement = document.querySelector(".hasil");
+  hasilElement.innerHTML = dosageInfoHTML;
+});
 
-    // Hitung nilai pengenceran berdasarkan rumus yang diberikan
-    let pengenceranMin = "";
-    let pengenceranMax = "";
+// ----------------------------------------------------------------------------------------------------------------------
 
-    if (dosis && obatData.kegunaan && obatData.kegunaan[selectedKegunaan]) {
-      pengenceranMin = ((minDosis * beratBadan) / (sediaanValue * konsentrasiPengenceran)) * spuitValue;
-      pengenceranMax = ((maxDosis * beratBadan) / (sediaanValue * konsentrasiPengenceran)) * spuitValue;
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("calculationForm");
 
-      pengenceranMin = pengenceranMin;
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const obat = document.getElementById("obat").value;
+    const spuit = parseInt(document.getElementById("spuit").value);
+    const sediaan = parseFloat(document.getElementById("sediaan").value);
+    const beratBadan = parseFloat(document.getElementById("berat_badan").value);
+
+    let dosisPengenceran = [];
+
+    // Mendapatkan data obat dari dictionary yang sesuai
+    let dataObat;
+    if (dataHipnotik[obat]) {
+      dataObat = dataHipnotik[obat];
+    } else if (dataAnalgesik[obat]) {
+      dataObat = dataAnalgesik[obat];
+    } else if (dataResusitasi[obat]) {
+      dataObat = dataResusitasi[obat];
     }
 
-    // Tampilkan nilai pengenceran pada elemen "pengenceran" di div "hasil"
-    const pengenceranElem = document.getElementById("pengenceran");
-    pengenceranElem.textContent = `Dosis Pengenceran: ${pengenceranMin} - ${pengenceranMax}`;
+    // Menampilkan informasi dosis pengenceran
+    const infoDosis = document.createElement("div");
+    infoDosis.innerHTML = `<h3>Informasi Dosis Pengenceran</h3>`;
+
+    if (dataObat) {
+      for (const kegunaan in dataObat.kegunaan) {
+        const kegunaanData = dataObat.kegunaan[kegunaan];
+
+        // Mendapatkan dosis pengenceran sesuai kondisi
+        let dosis;
+        if (kegunaanData.fixDosis !== undefined) {
+          dosis = ((kegunaanData.fixDosis * beratBadan) / (sediaan * 10000)) * spuit;
+        } else {
+          dosis = {
+            min: ((kegunaanData.minDosis * beratBadan) / (sediaan * 10000)) * spuit,
+            max: ((kegunaanData.maxDosis * beratBadan) / (sediaan * 10000)) * spuit,
+          };
+        }
+
+        // Menampilkan informasi dosis pengenceran sesuai format
+        let dosisInfo;
+        if (kegunaanData.fixDosis !== undefined) {
+          dosisInfo = `<p>${kegunaan} => Dosis Pengenceran: ${dosis.toFixed(5)} ml</p>`;
+        } else {
+          dosisInfo = `<p>${kegunaan} => Dosis Pengenceran: ${dosis.min.toFixed(5)} - ${dosis.max.toFixed(5)} ml</p>`;
+        }
+        infoDosis.innerHTML += dosisInfo;
+      }
+    } else {
+      const dosisInfo = document.createElement("p");
+      dosisInfo.textContent = "Tidak ada informasi dosis pengenceran untuk obat yang dipilih.";
+      infoDosis.appendChild(dosisInfo);
+    }
+
+    // Memperbarui tampilan dengan hasil perhitungan
+    const existingInfo = document.querySelector("#calculationForm > div.hasil");
+    if (existingInfo) {
+      existingInfo.replaceWith(infoDosis);
+    } else {
+      infoDosis.classList.add("hasil"); // Menambahkan class "hasil" ke elemen div
+      form.appendChild(infoDosis);
+    }
   });
 });
 
 
+// -------------------------------------------------------------------------------------------------------------------
 
+// document.getElementById("calculationForm").addEventListener("submit", function (event) {
+//   event.preventDefault(); // Prevent the form from submitting and refreshing the page
+
+//   // Get user inputs
+//   const selectedObat = document.getElementById("obat").value;
+//   const spuit = parseInt(document.getElementById("spuit").value);
+//   const sediaan = parseFloat(document.getElementById("sediaan").value);
+//   const beratBadan = parseFloat(document.getElementById("berat_badan").value);
+
+//   // Get the selected data based on the category of the selectedObat
+//   let selectedData;
+//   if (dataHipnotik[selectedObat]) {
+//     selectedData = dataHipnotik[selectedObat].kegunaan;
+//   } else if (dataAnalgesik[selectedObat]) {
+//     selectedData = dataAnalgesik[selectedObat].kegunaan;
+//   } else if (dataResusitasi[selectedObat]) {
+//     selectedData = dataResusitasi[selectedObat].kegunaan;
+//   }
+
+//   // Generate HTML for displaying dosage information
+//   let dosageInfoHTML = "<h3>Informasi Dosis Pengenceran</h3>";
+//   if (selectedData) {
+//     for (const kegunaan in selectedData) {
+//       if (selectedData.hasOwnProperty(kegunaan)) {
+//         const rute = selectedData[kegunaan].rute || "-";
+//         let dosisPengenceran;
+
+//         // Handling specific cases mentioned
+//         if (
+//           (selectedObat === "Morfin" && kegunaan === "Post Operasi") ||
+//           (selectedObat === "Petidin" && kegunaan === "Post Operatif") ||
+//           (selectedObat === "Hydromorphone" && kegunaan === "Analgesia") ||
+//           (selectedObat === "Ephedrine" && kegunaan === "Hipotensi/Bronkospasme")
+//         ) {
+//           // Generate dosage information based on specific cases
+//           dosisPengenceran = Object.entries(selectedData[kegunaan].rute)
+//             .map(([ruteKey, ruteValue]) => {
+//               const dosis = ((ruteValue.minDosis * beratBadan) / (sediaan * 10000)) * spuit;
+//               return `${ruteKey}: ${dosis.toFixed(2)} ml`;
+//             })
+//             .join(", ");
+//         } else {
+//           // Generate dosage information for other cases
+//           const dosisPengenceranMin = selectedData[kegunaan].minDosis ? ((selectedData[kegunaan].minDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
+//           const dosisPengenceranMax = selectedData[kegunaan].maxDosis ? ((selectedData[kegunaan].maxDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
+//           dosisPengenceran = dosisPengenceranMin !== "-" && dosisPengenceranMax !== "-" ? `${dosisPengenceranMin.toFixed(2)} ml ---> ${dosisPengenceranMax.toFixed(2)} ml` : "-";
+//         }
+
+//         // Generate dosage information based on conditions
+//         dosageInfoHTML += `<p>${kegunaan} => ${rute} : ${dosisPengenceran}</p>`;
+//       }
+//     }
+//   } else {
+//     dosageInfoHTML += `<p>Data obat tidak ditemukan.</p>`;
+//   }
+
+//   // Display dosage information
+//   const hasilElement = document.querySelector(".hasil");
+//   hasilElement.innerHTML = dosageInfoHTML;
+// });
