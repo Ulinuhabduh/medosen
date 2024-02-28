@@ -437,7 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Menampilkan informasi dosis pengenceran
     const infoDosis = document.createElement("div");
-    infoDosis.innerHTML = `<h3>Informasi Dosis Pengenceran</h3>`;
+    infoDosis.innerHTML = `<h3>Dosis Pengenceran ${obat}</h3>`;
 
     if (dataObat) {
       for (const kegunaan in dataObat.kegunaan) {
@@ -470,11 +470,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Memperbarui tampilan dengan hasil perhitungan
-    const existingInfo = document.querySelector("#calculationForm > div.hasil");
+    const existingInfo = document.querySelector(".hasil");
     if (existingInfo) {
       existingInfo.replaceWith(infoDosis);
     } else {
-      infoDosis.classList.add("hasil"); // Menambahkan class "hasil" ke elemen div
+      infoDosis.classList.add("result");
       form.appendChild(infoDosis);
     }
   });
