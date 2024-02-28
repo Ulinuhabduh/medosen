@@ -2,8 +2,7 @@ body {
     background-repeat: no-repeat;
     background-position: right;
     font-family: Arial, sans-serif;
-    background-color: gray;
-    color: wheat;
+    background-color: grey;
     margin: 0;
     padding: 50px 0;
     display: flex;
@@ -19,7 +18,17 @@ body {
 h2 {
       text-align: center;
       margin: 0 0 30px;
-    }
+      background-color: blue;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.904);
+      padding: 10px 0;
+      border-radius: 5px;
+      box-shadow: 10px 10px 10px black;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+}
 form {
       display: flex;
       flex-direction: column;
@@ -50,12 +59,16 @@ button[type="submit"]:hover {
     }
 
 .obat {
-  font-size: 1.8rem;
+  font-size: 3rem;
   font-weight: bolder;
 }
 
 .info {
   font-size: 1.2rem;
+}
+
+.hasilAkhir {
+  font-size: 1.1rem;
 }
 
 .result {
@@ -87,12 +100,16 @@ button[type="submit"]:hover {
       }
 
       .obat {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
         font-weight: bold;
       }
 
       .info {
         font-size: 1rem;
+      }
+
+      .hasilAkhir {
+        font-size: 0.8rem;
       }
 
       .result {
