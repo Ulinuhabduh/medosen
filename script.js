@@ -272,31 +272,31 @@ const dataAnalgesik = {
         DOA: "4 - 6 jam",
       },
     },
-    Diamorphine: {
-      kegunaan: {
-        "Analgesia (Intra Vena)": {
-          rute: "",
-          dosis: "< 400 mg/injeksi",
-          fixDosis: 400,
-          OOA: "2 - 3 mnt",
-          DOA: "-",
-        },
-      },
-    },
-    Tramadol: {
-      kegunaan: {
-        "Post Operatif (Intra Vena)": {
-          rute: "",
-          dosis: "50 - 100 mg/kg",
-          minDosis: 50,
-          maxDosis: 100,
-          OOA: "1 jam",
-          DOA: "6 - 9 jam",
-        },
+  },
+  Diamorphine: {
+    kegunaan: {
+      "Analgesia (Intra Vena)": {
+        rute: "",
+        dosis: "< 400 mg/injeksi",
+        fixDosis: 400,
+        OOA: "2 - 3 mnt",
+        DOA: "-",
       },
     },
   },
-}
+  Tramadol: {
+    kegunaan: {
+      "Post Operatif (Intra Vena)": {
+        rute: "",
+        dosis: "50 - 100 mg/kg",
+        minDosis: 50,
+        maxDosis: 100,
+        OOA: "1 jam",
+        DOA: "6 - 9 jam",
+      },
+    },
+  },
+};
 
 const dataResusitasi = {
   Ephedrine: {
@@ -383,11 +383,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let dosis;
         if (kegunaanData.fixDosis !== undefined) {
           dosis = ((kegunaanData.fixDosis * beratBadan) / (sediaan * 10000)) * spuit;
+
         } else if (kegunaanData.minDosis !== undefined || kegunaanData.maxDosis !== undefined) {
           dosis = {
             min: ((kegunaanData.minDosis * beratBadan) / (sediaan * 10000)) * spuit,
             max: ((kegunaanData.maxDosis * beratBadan) / (sediaan * 10000)) * spuit,
           };
+
         } else {
           dosis = {
             minDewasa: ((kegunaanData.minDosisDewasa) / (sediaan * 10000)) * spuit,
