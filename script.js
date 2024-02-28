@@ -370,9 +370,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Menampilkan informasi dosis pengenceran
     const infoDosis = document.createElement("div");
     infoDosis.innerHTML = `<p class="obat text-center text-primary">Dosis Pengenceran ${obat}</p>`;
-    const infoBerat = `<p class="fs-5 text-center text-dark">Berat Badan : ${beratBadan} kg</p>`;
+    const infoBerat = `<p class="info text-center text-dark">Berat Badan : ${beratBadan} kg</p>`;
     infoDosis.innerHTML += infoBerat;
-    const infoSediaan = `<p class="fs-5 text-center text-dark">Sediaan : ${sediaan} gr/ml</p>`;
+    const infoSediaan = `<p class="info text-center text-dark">Sediaan : ${sediaan} gr/ml</p>`;
     infoDosis.innerHTML += infoSediaan;
 
     if (dataObat) {
@@ -426,67 +426,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-
-// -------------------------------------------------------------------------------------------------------------------
-
-// document.getElementById("calculationForm").addEventListener("submit", function (event) {
-//   event.preventDefault(); // Prevent the form from submitting and refreshing the page
-
-//   // Get user inputs
-//   const selectedObat = document.getElementById("obat").value;
-//   const spuit = parseInt(document.getElementById("spuit").value);
-//   const sediaan = parseFloat(document.getElementById("sediaan").value);
-//   const beratBadan = parseFloat(document.getElementById("berat_badan").value);
-
-//   // Get the selected data based on the category of the selectedObat
-//   let selectedData;
-//   if (dataHipnotik[selectedObat]) {
-//     selectedData = dataHipnotik[selectedObat].kegunaan;
-//   } else if (dataAnalgesik[selectedObat]) {
-//     selectedData = dataAnalgesik[selectedObat].kegunaan;
-//   } else if (dataResusitasi[selectedObat]) {
-//     selectedData = dataResusitasi[selectedObat].kegunaan;
-//   }
-
-//   // Generate HTML for displaying dosage information
-//   let dosageInfoHTML = "<h3>Informasi Dosis Pengenceran</h3>";
-//   if (selectedData) {
-//     for (const kegunaan in selectedData) {
-//       if (selectedData.hasOwnProperty(kegunaan)) {
-//         const rute = selectedData[kegunaan].rute || "-";
-//         let dosisPengenceran;
-
-//         // Handling specific cases mentioned
-//         if (
-//           (selectedObat === "Morfin" && kegunaan === "Post Operasi") ||
-//           (selectedObat === "Petidin" && kegunaan === "Post Operatif") ||
-//           (selectedObat === "Hydromorphone" && kegunaan === "Analgesia") ||
-//           (selectedObat === "Ephedrine" && kegunaan === "Hipotensi/Bronkospasme")
-//         ) {
-//           // Generate dosage information based on specific cases
-//           dosisPengenceran = Object.entries(selectedData[kegunaan].rute)
-//             .map(([ruteKey, ruteValue]) => {
-//               const dosis = ((ruteValue.minDosis * beratBadan) / (sediaan * 10000)) * spuit;
-//               return `${ruteKey}: ${dosis.toFixed(2)} ml`;
-//             })
-//             .join(", ");
-//         } else {
-//           // Generate dosage information for other cases
-//           const dosisPengenceranMin = selectedData[kegunaan].minDosis ? ((selectedData[kegunaan].minDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
-//           const dosisPengenceranMax = selectedData[kegunaan].maxDosis ? ((selectedData[kegunaan].maxDosis * beratBadan) / (sediaan * 10000)) * spuit : "-";
-//           dosisPengenceran = dosisPengenceranMin !== "-" && dosisPengenceranMax !== "-" ? `${dosisPengenceranMin.toFixed(2)} ml ---> ${dosisPengenceranMax.toFixed(2)} ml` : "-";
-//         }
-
-//         // Generate dosage information based on conditions
-//         dosageInfoHTML += `<p>${kegunaan} => ${rute} : ${dosisPengenceran}</p>`;
-//       }
-//     }
-//   } else {
-//     dosageInfoHTML += `<p>Data obat tidak ditemukan.</p>`;
-//   }
-
-//   // Display dosage information
-//   const hasilElement = document.querySelector(".hasil");
-//   hasilElement.innerHTML = dosageInfoHTML;
-// });
