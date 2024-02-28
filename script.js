@@ -369,11 +369,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Menampilkan informasi dosis pengenceran
     const infoDosis = document.createElement("div");
-    infoDosis.innerHTML = `<p class="obat text-center text-primary">${obat}</p>`;
+    infoDosis.innerHTML = `<p class="obat text-center text-white bg-black">${obat}</p>`;
     const infoBerat = `<p class="info text-center text-dark">Berat Badan = ${beratBadan} kg</p>`;
     infoDosis.innerHTML += infoBerat;
     const infoSediaan = `<p class="info text-center text-dark">Sediaan = ${sediaan} gr/ml</p>`;
     infoDosis.innerHTML += infoSediaan;
+    const infoSpuit = `<p class="info text-center text-dark">Spuit = ${spuit} ml</p>`;
+    infoDosis.innerHTML += infoSpuit;
 
     if (dataObat) {
       for (const kegunaan in dataObat.kegunaan) {
@@ -403,16 +405,16 @@ document.addEventListener("DOMContentLoaded", function () {
         // Menampilkan informasi dosis pengenceran sesuai format
         let dosisInfo;
         if (kegunaanData.fixDosis !== undefined) {
-          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">Kegunaan (rute) : ${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.toFixed(5)}</strong> ml</p>`;
+          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.toFixed(5)}</strong> ml</p>`;
         } else if (kegunaanData.minDosis !== undefined || kegunaanData.maxDosis !== undefined) {
-          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">Kegunaan (rute) : ${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.min.toFixed(5)}</strong> - <strong>${dosis.max.toFixed(
+          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.min.toFixed(5)}</strong> - <strong>${dosis.max.toFixed(
             5
           )}</strong> ml</p>`;
         } else {
-          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">Kegunaan (rute) : ${kegunaan}</strong> => Dosis Pengenceran Dewasa: <strong>${dosis.minDewasa.toFixed(5)}</strong> - <strong>${dosis.maxDewasa.toFixed(
+          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => Dosis Pengenceran Dewasa: <strong>${dosis.minDewasa.toFixed(5)}</strong> - <strong>${dosis.maxDewasa.toFixed(
             5
           )}</strong> ml</p>`;
-          dosisInfo += `<p class="hasilAkhir"><strong class="text-success">Kegunaan (rute) : ${kegunaan}</strong> => Dosis Pengenceran Anak: <strong>${dosis.minAnak.toFixed(5)}</strong> - <strong>${dosis.maxAnak.toFixed(
+          dosisInfo += `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => Dosis Pengenceran Anak: <strong>${dosis.minAnak.toFixed(5)}</strong> - <strong>${dosis.maxAnak.toFixed(
             5
           )}</strong> ml</p>`;
         }

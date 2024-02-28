@@ -60,15 +60,22 @@ button[type="submit"]:hover {
 
 .obat {
   font-size: 3rem;
-  font-weight: bolder;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 .info {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .hasilAkhir {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  text-transform: capitalize;
 }
 
 .result {
@@ -105,11 +112,11 @@ button[type="submit"]:hover {
       }
 
       .info {
-        font-size: 1rem;
+        font-size: 0.8rem;
       }
 
       .hasilAkhir {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
 
       .result {
