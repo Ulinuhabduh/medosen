@@ -1,5 +1,3 @@
-// Dictionary Obat
-
 const dataHipnotik = {
   Propofol: {
     kegunaan: {
