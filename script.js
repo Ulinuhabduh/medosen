@@ -403,17 +403,17 @@ document.addEventListener("DOMContentLoaded", function () {
         // Menampilkan informasi dosis pengenceran sesuai format
         let dosisInfo;
         if (kegunaanData.fixDosis !== undefined) {
-          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.toFixed(5)}</strong> ml</p>`;
+          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.toFixed(1)}</strong> ml</p>`;
         } else if (kegunaanData.minDosis !== undefined || kegunaanData.maxDosis !== undefined) {
-          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.min.toFixed(5)}</strong> - <strong>${dosis.max.toFixed(
-            5
+          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => <strong></strong> Dosis Pengenceran: <strong>${dosis.min.toFixed(1)}</strong> - <strong>${dosis.max.toFixed(
+            1
           )}</strong> ml</p>`;
         } else {
-          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => Dosis Pengenceran Dewasa: <strong>${dosis.minDewasa.toFixed(5)}</strong> - <strong>${dosis.maxDewasa.toFixed(
-            5
+          dosisInfo = `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => Dosis Pengenceran Dewasa: <strong>${dosis.minDewasa.toFixed(1)}</strong> - <strong>${dosis.maxDewasa.toFixed(
+            1
           )}</strong> ml</p>`;
-          dosisInfo += `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => Dosis Pengenceran Anak: <strong>${dosis.minAnak.toFixed(5)}</strong> - <strong>${dosis.maxAnak.toFixed(
-            5
+          dosisInfo += `<p class="hasilAkhir"><strong class="text-success">${kegunaan}</strong> => Dosis Pengenceran Anak: <strong>${dosis.minAnak.toFixed(1)}</strong> - <strong>${dosis.maxAnak.toFixed(
+            1
           )}</strong> ml</p>`;
         }
         infoDosis.innerHTML += dosisInfo;
