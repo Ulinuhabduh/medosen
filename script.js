@@ -4,16 +4,16 @@ const dataHipnotik = {
       Induksi: {
         rute: "-",
         dosis: "2 - 2.5 mg/kg",
-        minDosis: 2,
-        maxDosis: 2.5,
+        minDosis: 2000,
+        maxDosis: 2500,
         OOA: "30s",
         DOA: "5 - 10 mnt",
       },
       Maintenance: {
         rute: "-",
         dosis: "6 - 10 mg/kg/jam",
-        minDosis: 6,
-        maxDosis: 10,
+        minDosis: 6000,
+        maxDosis: 10000,
         OOA: "30s",
         DOA: "5 - 10 mnt",
       },
@@ -32,24 +32,24 @@ const dataHipnotik = {
       Induksi: {
         rute: "-",
         dosis: "4 - 6 mg/kg",
-        minDosis: 4,
-        maxDosis: 6,
+        minDosis: 4000,
+        maxDosis: 6000,
         OOA: "10s",
         DOA: "5 - 15 mnt",
       },
       Maintenance: {
         rute: "-",
         dosis: "1 - 3 mg/kg/jam",
-        minDosis: 1,
-        maxDosis: 3,
+        minDosis: 1000,
+        maxDosis: 3000,
         OOA: "10s",
         DOA: "5 - 15 mnt",
       },
       Sedasi: {
         rute: "-",
         dosis: "1 - 3 mg/kg/jam",
-        minDosis: 1,
-        maxDosis: 3,
+        minDosis: 1000,
+        maxDosis: 3000,
         OOA: "10s",
         DOA: "5 - 15 mnt",
       },
@@ -60,16 +60,16 @@ const dataHipnotik = {
       "Induksi IV": {
         rute: "-",
         dosis: "1 - 3 mg/kg",
-        minDosis: 1,
-        maxDosis: 3,
+        minDosis: 1000,
+        maxDosis: 3000,
         OOA: "30s",
         DOA: "10 - 20 mnt",
       },
       "Intra Muskular": {
         rute: "-",
         dosis: "8 - 13 mg/kg",
-        minDosis: 8,
-        maxDosis: 13,
+        minDosis: 8000,
+        maxDosis: 13000,
         OOA: "30s",
         DOA: "10 - 20 mnt",
       },
@@ -82,30 +82,30 @@ const dataAnalgesik = {
     kegunaan: {
       "Premedikasi (Intra Muskuler)": {
         dosis: "0.05 - 0.2 mg/kg",
-        minDosis: 0.05,
-        maxDosis: 0.2,
+        minDosis: 50,
+        maxDosis: 200,
         OOA: "5-10 mnt",
         DOA: "3-5 jam",
       },
       "Intra Operasi (Intra Vena)": {
         rute: "",
         dosis: "0.1 - 1 mg/kg",
-        minDosis: 0.1,
-        maxDosis: 1,
+        minDosis: 100,
+        maxDosis: 1000,
         OOA: "5-10 mnt",
         DOA: "3-5 jam",
       },
       "Post Operasi (Intra Muskuler)": {
         dosis: "0.05 - 0.2 mg/kg",
-        minDosis: 0.05,
-        maxDosis: 0.2,
+        minDosis: 50,
+        maxDosis: 200,
         OOA: "5-10 mnt",
         DOA: "3-5 jam",
       },
       "Post Operasi (Intra Vena)": {
         dosis: "0.03 - 0.15 mg/kg",
-        minDosis: 0.03,
-        maxDosis: 0.15,
+        minDosis: 30,
+        maxDosis: 150,
         OOA: "5-10 mnt",
         DOA: "3-5 jam",
       },
@@ -116,32 +116,32 @@ const dataAnalgesik = {
       "Premedikasi (Intra Muskuler)": {
         rute: "",
         dosis: "0.5 - 1 mg/kg",
-        minDosis: 0.5,
-        maxDosis: 1,
+        minDosis: 500,
+        maxDosis: 1000,
         OOA: "5-10 mnt",
         DOA: "2-3 jam",
       },
       "Intra Operatif (Intra Vena)": {
         rute: "",
         dosis: "2.5 - 5 mg/kg",
-        minDosis: 2.5,
-        maxDosis: 5,
+        minDosis: 2500,
+        maxDosis: 5000,
         OOA: "5-10 mnt",
         DOA: "2-3 jam",
       },
       "Post Operatif (Intra Muskuler)": {
         rute: "",
         dosis: "0.5 - 1 mg/kg",
-        minDosis: 0.5,
-        maxDosis: 1,
+        minDosis: 500,
+        maxDosis: 1000,
         OOA: "5-10 mnt",
         DOA: "2-3 jam",
       },
       "Post Operatif (Intra Vena)": {
         rute: "",
         dosis: "0.2 - 0.5 mg/kg",
-        minDosis: 0.2,
-        maxDosis: 0.5,
+        minDosis: 200,
+        maxDosis: 500,
         OOA: "5-10 mnt",
         DOA: "2-3 jam",
       },
@@ -212,8 +212,8 @@ const dataAnalgesik = {
       "Analgesia (Intra Vena)": {
         rute: "",
         dosis: "0.5 - 1.0 mg/kg",
-        minDosis: 0.5,
-        maxDosis: 2.5,
+        minDosis: 500,
+        maxDosis: 1000,
         OOA: "30s",
         DOA: "5 - 10 mnt",
       },
@@ -249,15 +249,15 @@ const dataAnalgesik = {
     kegunaan: {
       "Analgesia (Intra Vena)": {
         dosis: "0.01 - 0.04 mg/kg",
-        minDosis: 0.01,
-        maxDosis: 0.04,
+        minDosis: 10,
+        maxDosis: 40,
         OOA: "15 - 30 mnt",
         DOA: "4 - 6 jam",
       },
       "Anagesia (Intra Muskuler)": {
         dosis: "0.04 - 0.08 mg/kg",
-        minDosis: 0.04,
-        maxDosis: 0.08,
+        minDosis: 40,
+        maxDosis: 80,
         OOA: "15 - 30 mnt",
         DOA: "4 - 6 jam",
       },
@@ -276,7 +276,7 @@ const dataAnalgesik = {
       "Analgesia (Intra Vena)": {
         rute: "",
         dosis: "< 400 mg/injeksi",
-        fixDosis: 400,
+        fixDosis: 400000,
         OOA: "2 - 3 mnt",
         DOA: "-",
       },
@@ -287,8 +287,8 @@ const dataAnalgesik = {
       "Post Operatif (Intra Vena)": {
         rute: "",
         dosis: "50 - 100 mg/kg",
-        minDosis: 50,
-        maxDosis: 100,
+        minDosis: 50000,
+        maxDosis: 100000,
         OOA: "1 jam",
         DOA: "6 - 9 jam",
       },
@@ -301,15 +301,15 @@ const dataResusitasi = {
     kegunaan: {
       "Hipotensi/Bronkospasme (Intra Vena)": {
         dosis: "5 - 20 mg",
-        minDosis: 5,
-        maxDosis: 20,
+        minDosis: 5000,
+        maxDosis: 20000,
         OOA: "2 - 5 mnt",
         DOA: "10 - 60 mnt",
       },
       "Hipotensi/Bronkospasme (Intra Muskuler)": {
         dosis: "25 - 50 mg",
-        minDosis: 25,
-        maxDosis: 50,
+        minDosis: 25000,
+        maxDosis: 50000,
         OOA: "< 10 mnt",
         DOA: "10 - 60 mnt",
       },
@@ -320,19 +320,19 @@ const dataResusitasi = {
       "Bradikardia Sinus (Intra Vena, Intra Muskuler)": {
         rute: "",
         dosisDewasa: "0.5 - 1.0 mg",
-        minDosisDewasa: 0.5,
-        maxDosisDewasa: 1,
+        minDosisDewasa: 500,
+        maxDosisDewasa: 1000,
         dosisAnak: "10 - 20 mg/kg",
-        minDosisAnak: 10,
-        maxDosisAnak: 20,
+        minDosisAnak: 10000,
+        maxDosisAnak: 20000,
         OOA: "45 - 60s",
         DOA: "1 - 2 jam",
       },
       "Premedikasi (Intra Vena, Intra Muskuler)": {
         rute: "",
         dosis: "0.4 - 1.0 mg",
-        minDosis: 0.4,
-        maxDosis: 1,
+        minDosis: 400,
+        maxDosis: 1000,
         OOA: "5 - 40 mnt",
         DOA: "1 - 2 jam",
       },
@@ -382,21 +382,21 @@ document.addEventListener("DOMContentLoaded", function () {
         // Mendapatkan dosis pengenceran sesuai kondisi
         let dosis;
         if (kegunaanData.fixDosis !== undefined) {
-          dosis = ((kegunaanData.fixDosis * beratBadan) / (sediaan * 10000)) * spuit;
+          dosis = ((kegunaanData.fixDosis * beratBadan) / (sediaan)) * spuit;
 
         } else if (kegunaanData.minDosis !== undefined || kegunaanData.maxDosis !== undefined) {
           dosis = {
-            min: ((kegunaanData.minDosis * beratBadan) / (sediaan * 10000)) * spuit,
-            max: ((kegunaanData.maxDosis * beratBadan) / (sediaan * 10000)) * spuit,
+            min: ((kegunaanData.minDosis * beratBadan) / (sediaan)) * spuit,
+            max: ((kegunaanData.maxDosis * beratBadan) / (sediaan)) * spuit,
           };
 
         } else {
           dosis = {
-            minDewasa: ((kegunaanData.minDosisDewasa) / (sediaan * 10000)) * spuit,
-            maxDewasa: ((kegunaanData.maxDosisDewasa) / (sediaan * 10000)) * spuit,
+            minDewasa: ((kegunaanData.minDosisDewasa) / (sediaan)) * spuit,
+            maxDewasa: ((kegunaanData.maxDosisDewasa) / (sediaan)) * spuit,
 
-            minAnak: ((kegunaanData.minDosisAnak * beratBadan) / (sediaan * 10000)) * spuit,
-            maxAnak: ((kegunaanData.maxDosisAnak * beratBadan) / (sediaan * 10000)) * spuit,
+            minAnak: ((kegunaanData.minDosisAnak * beratBadan) / (sediaan)) * spuit,
+            maxAnak: ((kegunaanData.maxDosisAnak * beratBadan) / (sediaan)) * spuit,
           }
         }
 
