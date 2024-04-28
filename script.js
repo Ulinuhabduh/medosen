@@ -434,3 +434,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// Membuat fungsi untuk menangani pengunduhan file saat tombol diklik
+function downloadFile() {
+    // Mendefinisikan URL file yang akan diunduh
+    var fileUrl = 'file/Medosen App.apk';
+
+    // Membuat elemen anchor untuk memicu unduhan
+    var downloadAnchor = document.createElement('a');
+    downloadAnchor.href = fileUrl;
+
+    // Menentukan nama file yang akan diunduh
+    downloadAnchor.download = 'Medosen App.apk';
+
+    // Mengklik elemen anchor untuk memulai unduhan
+    downloadAnchor.click();
+}
+
+// Menambahkan event listener untuk tombol "Unduh"
+document.querySelector('.unduh').addEventListener('click', downloadFile);
