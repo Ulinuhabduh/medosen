@@ -349,7 +349,6 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const obat = document.getElementById("obat").value;
-    const spuit = parseInt(document.getElementById("spuit").value);
     const sediaan = parseFloat(document.getElementById("sediaan").value);
     const beratBadan = parseFloat(document.getElementById("berat_badan").value);
 
@@ -370,10 +369,6 @@ document.addEventListener("DOMContentLoaded", function () {
     infoDosis.innerHTML = `<p class="obat text-center text-white bg-black">${obat}</p>`;
     const infoBerat = `<p class="info text-center text-dark">Berat Badan = ${beratBadan} kg</p>`;
     infoDosis.innerHTML += infoBerat;
-    const infoSediaan = `<p class="info text-center text-dark">Sediaan = ${sediaan} gr/ml</p>`;
-    infoDosis.innerHTML += infoSediaan;
-    const infoSpuit = `<p class="info text-center text-dark">Spuit = ${spuit} ml</p>`;
-    infoDosis.innerHTML += infoSpuit;
 
     if (dataObat) {
       for (const kegunaan in dataObat.kegunaan) {
@@ -382,21 +377,21 @@ document.addEventListener("DOMContentLoaded", function () {
         // Mendapatkan dosis pengenceran sesuai kondisi
         let dosis;
         if (kegunaanData.fixDosis !== undefined) {
-          dosis = ((kegunaanData.fixDosis * beratBadan) / (sediaan)) * spuit;
+          dosis = ((kegunaanData.fixDosis * beratBadan) / (sediaan));
 
         } else if (kegunaanData.minDosis !== undefined || kegunaanData.maxDosis !== undefined) {
           dosis = {
-            min: ((kegunaanData.minDosis * beratBadan) / (sediaan)) * spuit,
-            max: ((kegunaanData.maxDosis * beratBadan) / (sediaan)) * spuit,
+            min: ((kegunaanData.minDosis * beratBadan) / (sediaan)),
+            max: ((kegunaanData.maxDosis * beratBadan) / (sediaan)),
           };
 
         } else {
           dosis = {
-            minDewasa: ((kegunaanData.minDosisDewasa) / (sediaan)) * spuit,
-            maxDewasa: ((kegunaanData.maxDosisDewasa) / (sediaan)) * spuit,
+            minDewasa: ((kegunaanData.minDosisDewasa) / (sediaan)),
+            maxDewasa: ((kegunaanData.maxDosisDewasa) / (sediaan)),
 
-            minAnak: ((kegunaanData.minDosisAnak * beratBadan) / (sediaan)) * spuit,
-            maxAnak: ((kegunaanData.maxDosisAnak * beratBadan) / (sediaan)) * spuit,
+            minAnak: ((kegunaanData.minDosisAnak * beratBadan) / (sediaan)),
+            maxAnak: ((kegunaanData.maxDosisAnak * beratBadan) / (sediaan)),
           }
         }
 
